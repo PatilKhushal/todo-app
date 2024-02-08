@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import TodoTitle from "../generic/AddTitle";
 import TodoItem from "./todoItem";
 import TodoAddButton from "../generic/AddButton";
@@ -12,6 +12,8 @@ const TodoComponent = ({ title, task, deleteComponent }) => {
     taskArr.push(JSON.parse(elem));
   });
 
+  const componentRef = useRef(null);
+
   // initializing state of component
   const [TodoItemData, setTodoItemData] = useState(taskArr);
   const [modalVisibility, setModalVisibility] = useState(1);
@@ -22,6 +24,10 @@ const TodoComponent = ({ title, task, deleteComponent }) => {
     setTaskToLocalStorage(arr);
     setTodoItemData(arr);
   }
+
+  useEffect(() => {
+    alert("first time rendered ", title)
+  }, [title])
 
   function setTaskToLocalStorage(arr) {
     let taskToString = [];
@@ -57,7 +63,7 @@ const TodoComponent = ({ title, task, deleteComponent }) => {
   }
 
   return (
-    <div className=" bg-todo-bg dark:bg-todo-bg-dark text-todo-text dark:text-todo-text-dark border  dark:border-0 p-8 flex flex-col gap-6 rounded-xl relative overflow-hidden h-max min-h-full">
+    <div ref={componentRef} className=" bg-todo-bg dark:bg-todo-bg-dark text-todo-text dark:text-todo-text-dark border  dark:border-0 p-8 flex flex-col gap-6 rounded-xl relative overflow-hidden h-max min-h-full leftToRight">
       <TodoTitle title={title} />
       {TodoItemData.map((item) => {
         return (

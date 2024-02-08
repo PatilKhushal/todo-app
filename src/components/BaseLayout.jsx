@@ -19,11 +19,16 @@ export default function BaseLayout({ children }) {
         "task",
         `${JSON.stringify({ ...task, ...newTitle })}`
       );
+
+      setTaskArr([
+        ...taskArr,
+        { title: TaskTitle, task: [], key: Math.random() },
+      ]);
     }
     setModalVisibility(1);
   }
 
-  function getTaskFromLocalStorage() {
+  const [taskArr, setTaskArr] = useState(() => {
     let arr = JSON.parse(localStorage.getItem("task"));
     let tasks = [];
     for (const key in arr) {
@@ -34,17 +39,17 @@ export default function BaseLayout({ children }) {
       });
     }
     return tasks;
-  }
+  });
 
   return (
-    <div className="flex flex-col w-full h-dvh justify-between bg-main-bg dark:bg-main-bg-dark text-black dark:text-white ">
+    <div className="flex flex-col w-full min-h-dvh justify-between bg-main-bg dark:bg-main-bg-dark text-black dark:text-white ">
       <div className="flex flex-col h-5/6">
         <Heading />
-        <TodoContainer tasks={getTaskFromLocalStorage()}/>
+        <TodoContainer tasks={taskArr} setTaskArr={setTaskArr} />
       </div>
 
       <div className="w-full flex justify-center p-4">
-        <Nav setModalVisibility={setModalVisibility}/>
+        <Nav setModalVisibility={setModalVisibility} />
       </div>
       <GetInputModal
         name={"Add New Title"}

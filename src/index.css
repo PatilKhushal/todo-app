@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.leftToRight
+{
+    animation: left-right 1s;
+}
+
+@keyframes left-right {
+    0%
+    {
+        transform: translateX(-100%);
+    }
+    100%
+    {
+        transform: translateY(0);
+    }
+}
