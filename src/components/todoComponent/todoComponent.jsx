@@ -25,10 +25,6 @@ const TodoComponent = ({ title, task, deleteComponent }) => {
     setTodoItemData(arr);
   }
 
-  useEffect(() => {
-    alert("first time rendered ", title)
-  }, [title])
-
   function setTaskToLocalStorage(arr) {
     let taskToString = [];
     arr.forEach((task) => {
