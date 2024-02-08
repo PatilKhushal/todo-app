@@ -6,7 +6,6 @@ import TodoContainer from "./todoComponent/todoContainer";
 
 export default function BaseLayout({ children }) {
   const [modalVisibility, setModalVisibility] = useState(1);
-
   function addNewTaskToLocalStorage(TaskTitle) {
     if (TaskTitle) {
       let task = localStorage.getItem("task");
@@ -42,10 +41,10 @@ export default function BaseLayout({ children }) {
   });
 
   return (
-    <div className="flex flex-col w-full min-h-dvh justify-between bg-main-bg dark:bg-main-bg-dark text-black dark:text-white ">
+    <div className="flex flex-col h-dvh justify-between bg-main-bg dark:bg-main-bg-dark text-black dark:text-white ">
       <div className="flex flex-col h-5/6">
         <Heading />
-        <TodoContainer tasks={taskArr} setTaskArr={setTaskArr} />
+        <TodoContainer tasks={taskArr} setTaskArr={setTaskArr}/>
       </div>
 
       <div className="w-full flex justify-center p-4">

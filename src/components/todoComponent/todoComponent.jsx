@@ -59,7 +59,7 @@ const TodoComponent = ({ title, task, deleteComponent }) => {
   }
 
   return (
-    <div ref={componentRef} className=" bg-todo-bg dark:bg-todo-bg-dark text-todo-text dark:text-todo-text-dark border  dark:border-0 p-8 flex flex-col gap-6 rounded-xl relative overflow-hidden h-max min-h-full leftToRight">
+    <div ref={componentRef} className=" bg-todo-bg dark:bg-todo-bg-dark text-todo-text dark:text-todo-text-dark border dark:border-0 p-8 flex flex-col gap-6 rounded-xl relative overflow-hidden h-max min-h-full leftToRight">
       <TodoTitle title={title} />
       {TodoItemData.map((item) => {
         return (
@@ -81,7 +81,13 @@ const TodoComponent = ({ title, task, deleteComponent }) => {
         func={generateTodoItemData}
         name={"Add Item"}
       />
-      <DeleteButton className="absolute right-1 top-1 p-2 rounded-full bg-sidebar-button-bg  dark:bg-black dark:border-0 hover:cursor-pointer" onClick={() => {deleteComponent(title)}}/>
+      <DeleteButton className="absolute right-1 top-1 p-2 rounded-full bg-sidebar-button-bg dark:bg-black dark:border-0 hover:cursor-pointer" onClick={() => {
+          componentRef.current.classList.remove("leftToRight");
+          componentRef.current.classList.add("topToBottom");
+          setTimeout(() => {
+            deleteComponent(title);
+          }, 150);
+        }}/>
     </div>
   );
 };
