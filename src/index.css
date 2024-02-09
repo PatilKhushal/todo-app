@@ -9,7 +9,7 @@
 
 .topToBottom
 {
-    animation: top-bottom 200ms linear;
+    animation: top-bottom 1000ms linear;
 }
 
 @keyframes left-right {
@@ -24,12 +24,8 @@
 }
 
 @keyframes top-bottom {
-    0%
-    {
-        transform: rotate(0);
-    }
     100%
     {
-        transform: rotate(360deg);
+        transform: scale(0);
     }
 }

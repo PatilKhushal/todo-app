@@ -84,9 +84,9 @@ const TodoComponent = ({ title, task, deleteComponent }) => {
       <DeleteButton className="absolute right-1 top-1 p-2 rounded-full bg-sidebar-button-bg dark:bg-black dark:border-0 hover:cursor-pointer" onClick={() => {
           componentRef.current.classList.remove("leftToRight");
           componentRef.current.classList.add("topToBottom");
-          setTimeout(() => {
+          /* setTimeout(() => {
             deleteComponent(title);
-          }, 150);
+          }, 200); */
         }}/>
     </div>
   );
